@@ -43,7 +43,7 @@ export function proxy(request: NextRequest): NextResponse {
 
   if (isAuthRoute(pathname) && hasSession) {
     const dashboard = new URL(
-      process.env.NEXT_PUBLIC_AUTH_REDIRECT_URL ?? "/client",
+      process.env.NEXT_PUBLIC_AUTH_REDIRECT_URL ?? "/client/dashboard",
       request.url,
     );
     return NextResponse.redirect(dashboard);

@@ -31,7 +31,6 @@ export function NewsletterForm({
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      // Client-side validation — avoids a server round-trip for format errors
       const validation = NewsletterRequestSchema.safeParse({ email: email.trim() });
       if (!validation.success) {
         setFormStatus({
@@ -74,7 +73,6 @@ export function NewsletterForm({
       </div>
 
       {isSuccess ? (
-        // ── Success state ──────────────────────────────────────────────
         <div
           role="status"
           aria-live="polite"
@@ -88,7 +86,6 @@ export function NewsletterForm({
           <span>{formStatus.message}</span>
         </div>
       ) : (
-        // ── Form ───────────────────────────────────────────────────────
         <form
           onSubmit={handleSubmit}
           noValidate

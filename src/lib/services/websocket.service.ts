@@ -37,10 +37,15 @@ class WebSocketService {
 
   public disconnect(): void {
     if (this.socket) {
-      this.socket.disconnect();
+      if (this.socket.connected) {
+        this.socket.disconnect();
+      } else {
+        this.socket.close();
+      }
       this.socket = null;
     }
   }
+
 
   public getSocket(): Socket | null {
     return this.socket;

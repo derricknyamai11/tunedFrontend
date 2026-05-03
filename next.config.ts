@@ -22,6 +22,17 @@ const nextConfig: NextConfig = {
         hostname: "placehold.co",
         pathname: "/**",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "5000",
+        pathname: "/static/**",
+      },
+      {
+        protocol: "https",
+        hostname: "tunedessays.com",
+        pathname: "/static/**",
+      },
     ],
   },
 

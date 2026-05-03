@@ -34,7 +34,7 @@ export default async function AuthRootLayout({
   const initialUser: AuthUser | null = authResult.ok ? authResult.user : null;
 
   return (
-    <html lang="en" className={dmSans.variable}>
+    <html lang="en" className={dmSans.variable} data-scroll-behavior="smooth">
       <body className={`${dmSans.className} antialiased`}>
          <AuthProvider initialUser={initialUser} skipInitialFetch={initialUser !== null}>
           <NotificationProvider>
