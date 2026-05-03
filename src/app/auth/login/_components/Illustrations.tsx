@@ -14,6 +14,7 @@ export function MainIllustration() {
         aria-hidden="true"
         width={500}
         height={600}
+        loading="eager"
       />
     </div>
   );
