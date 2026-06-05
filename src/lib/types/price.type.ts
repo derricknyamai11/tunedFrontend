@@ -3,8 +3,9 @@ import { Deadline } from "./content.type";
 export interface PricingCategory {
     id: string;
     name: string;
-    description: string;
+    description: string | null;
     display_order: number;
+    readonly [key: string]: unknown;
 }
 
 export interface CalculatePriceRequest {

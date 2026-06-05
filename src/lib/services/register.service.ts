@@ -74,5 +74,6 @@ export async function submitRegistration(
     };
   }
 
-  return { ok: true, email: successData.data.email };
+  const raw = result.data as Record<string, unknown> | null;
+  return { ok: true, email: successData.data.email, auto_verified: raw?.auto_verified === true };
 }

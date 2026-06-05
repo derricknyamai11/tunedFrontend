@@ -65,6 +65,9 @@ export function BlogContent({ post }: BlogContentProps) {
             "prose-th:bg-slate-50 prose-th:text-slate-700 prose-th:font-semibold",
             "prose-td:text-slate-600"
           )}
+          /* Security: post.content is passed through sanitizeHtml() in utils.ts
+             (strips scripts, event handlers, dangerous URI schemes, iframes)
+             before reaching this component via toBlogPostViewModel(). */
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 

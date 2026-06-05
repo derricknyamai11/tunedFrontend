@@ -63,14 +63,7 @@ export function ServiceDetails({ service }: ServiceDetailsProps) {
                 </h2>
               </div>
 
-              <article className="prose prose-slate prose-lg max-w-none 
-                prose-headings:font-bold prose-headings:text-slate-900
-                prose-p:text-slate-600 prose-p:leading-relaxed prose-p:text-[17px]
-                prose-strong:text-slate-900 prose-strong:font-bold
-                prose-li:text-slate-600 prose-li:marker:text-emerald-500
-                prose-blockquote:border-emerald-500 prose-blockquote:bg-slate-50 prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-xl
-                prose-img:rounded-2xl prose-img:shadow-xl"
-              >
+              <article className="prose prose-slate prose-lg max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-p:text-slate-600 prose-p:leading-relaxed prose-p:text-[17px] prose-strong:text-slate-900 prose-strong:font-bold prose-li:text-slate-600 prose-li:marker:text-emerald-500 prose-blockquote:border-emerald-500 prose-blockquote:bg-slate-50 prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-img:rounded-2xl prose-img:shadow-xl">
                 <div>
                   <p>{service.description}</p>
                 </div> 

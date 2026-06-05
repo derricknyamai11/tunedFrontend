@@ -28,7 +28,7 @@ export async function fetchFeaturedContent(): Promise<
 
   return {
     ok:   true,
-    data: parsed.data,
+    data: parsed.data as unknown as FeaturedContentResponse,
     message: "Featured services fetched successfully",
     status: 200,
   };

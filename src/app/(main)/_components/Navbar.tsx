@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link, { type LinkProps } from "next/link";
 import { Menu, X, ChevronDown } from "lucide-react";
 // import { Button } from "@/components/ui/button";
@@ -15,11 +14,11 @@ import type { NavbarProps } from "@/lib/props/index.props";
 import type { NavLink } from "@/lib/types/common.type";
 
 const NAV_LINKS: NavLink[] = [
-  { label: "Services",     href: "#" },
+  { label: "Services",     href: "/services" },
   { label: "FAQs",         href: "/faqs" },
   { label: "Samples",      href: "/samples" },
   { label: "Blogs",        href: "/blogs" },
-  { label: "Testimonials", href: "#" },
+  { label: "Testimonials", href: "/testimonials" },
 ];
 
 export function Navbar({ activeRoute = "/" }: NavbarProps) {

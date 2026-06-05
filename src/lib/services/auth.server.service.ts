@@ -36,16 +36,27 @@ function parseAuthMeResult(result: ApiResult<unknown>): ServerAuthResult {
 export async function getServerAuthUser(): Promise<ServerAuthResult> {
   try {
     const cookieStore = await cookies();
-    const cookieHeader = cookieStore.toString();
-    // const cookieName = process.env.NEXT_PUBLIC_SESSION_COOKIE_NAME ?? "tuned_session";
-    // const sessionCookie = cookieStore.get(cookieName);
-    const extraHeaders: Record<string, string> | undefined = cookieHeader
-      ? { Cookie: cookieHeader  } //`${sessionCookie.name}=${sessionCookie.value}`
-      : undefined;
+
+    // Build a proper "name=value; name2=value2" cookie header string.
+    // cookieStore.toString() returns "[object Object]" — do NOT use it.
+    const allCookies = cookieStore.getAll();
+    const cookieHeader = allCookies
+      .map((c) => `${c.name}=${c.value}`)
+      .join("; ");
+
+    // Also try passing the JWT access token as Authorization header
+    // (Flask-JWT-Extended reads from both headers and cookies)
+    const jwtCookie = allCookies.find(
+      (c) => c.name === "tuned_access_token" || c.name === "access_token_cookie"
+    );
+
+    const extraHeaders: Record<string, string> = {};
+    if (cookieHeader) extraHeaders["Cookie"] = cookieHeader;
+    if (jwtCookie) extraHeaders["Authorization"] = `Bearer ${jwtCookie.value}`;
 
     const result = await apiGet<unknown>("/auth/me", {
       cache: "no-store",
-      headers: extraHeaders,
+      headers: Object.keys(extraHeaders).length ? extraHeaders : undefined,
     });
 
     return parseAuthMeResult(result);

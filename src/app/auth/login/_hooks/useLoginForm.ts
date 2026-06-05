@@ -4,6 +4,8 @@ import { LoginFormSchema } from "../_schemas/login.schema";
 import { submitLogin } from "@/lib/services/login.service";
 import type { LoginFormStatus, LoginFieldErrors } from "../_types/login.type";
 import { sanitizeCallbackUrl } from "../_utils/login.util";
+import { apiGet } from "@/api-client";
+import type { AuthUser } from "@/lib/types/auth.type";
 
 export function useLoginForm(callbackUrl: string) {
   const router = useRouter();
@@ -81,7 +83,21 @@ export function useLoginForm(callbackUrl: string) {
 
       setFormStatus("success");
       setIsSubmitting(false);
-      router.push(sanitizeCallbackUrl(callbackUrl) as never);
+
+      // Determine redirect: honor callbackUrl if explicitly set, otherwise route by role
+      const safe = sanitizeCallbackUrl(callbackUrl);
+      if (safe && safe !== "/" && safe !== "/client/dashboard") {
+        router.push(safe as never);
+        return;
+      }
+
+      // Check user role for smart redirect
+      const meRes = await apiGet<AuthUser>("/auth/me");
+      if (meRes.ok && meRes.data) {
+        if (meRes.data.is_admin) { router.push("/admin" as never); return; }
+        if (meRes.data.is_writer) { router.push("/writer" as never); return; }
+      }
+      router.push("/client/dashboard" as never);
     },
     [identifier, password, rememberMe, isSubmitting, isSuccess, router, callbackUrl]
   );

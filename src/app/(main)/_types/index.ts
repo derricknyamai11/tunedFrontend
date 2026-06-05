@@ -39,11 +39,11 @@ export interface Sample {
   readonly id:         SampleId;
   readonly title:      string;
   readonly slug:       Slug;
-  readonly excerpt:    string;
-  readonly service_id: ServiceId;
+  readonly excerpt:    string | null;
+  readonly service_id: ServiceId | null;
   readonly word_count: number;
   readonly featured:   boolean;
-  readonly image:      string;
+  readonly image:      string | null;
   readonly tags:       readonly Tag[];
 }
 
@@ -55,11 +55,11 @@ export interface BlogPostResponse {
   readonly category_id:      CategoryId;
   readonly slug:             Slug;
   readonly excerpt:          string;
-  readonly featured_image:   string;
-  readonly meta_description: string;
+  readonly featured_image:   string | null;
+  readonly meta_description: string | null;
   readonly is_published:     boolean;
   readonly is_featured:      boolean;
-  readonly published_at:     ISODateString;
+  readonly published_at:     ISODateString | null;
   readonly tags:             readonly Tag[];
 }
 
@@ -76,10 +76,10 @@ export interface BlogPostViewModel {
   readonly author:         string;
   readonly slug:           Slug;
   readonly excerpt:        string;
-  readonly featuredImage:  string;
+  readonly featuredImage:  string | null;
   readonly categoryId:     CategoryId;
   readonly tags:           readonly Tag[];
-  readonly publishedAt:    ISODateString;
+  readonly publishedAt:    ISODateString | null;
   readonly isFeatured:     boolean;
   readonly readTimeMinutes: number;
 }
@@ -88,10 +88,10 @@ export interface SampleViewModel {
   readonly id:         SampleId;
   readonly title:      string;
   readonly slug:       Slug;
-  readonly excerpt:    string;
-  readonly serviceId:  ServiceId;
+  readonly excerpt:    string | null;
+  readonly serviceId:  ServiceId | null;
   readonly wordCount:  number;
   readonly isFeatured: boolean;
-  readonly image:      string;
+  readonly image:      string | null;
   readonly tags:       readonly Tag[];
 }

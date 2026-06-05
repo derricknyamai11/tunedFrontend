@@ -93,7 +93,7 @@ export function ServicesDropdown({
                           {service.name}
                         </span>
                         <span className="text-[12px] text-slate-500 line-clamp-1 opacity-80 group-hover:opacity-100">
-                          {service.description.substring(0, 60)}...
+                          {(service.description ?? "").substring(0, 60)}...
                         </span>
                       </div>
                       <div className="h-8 w-8 rounded-full bg-slate-50 text-slate-400 flex items-center justify-center group-hover:bg-emerald-200/50 group-hover:text-emerald-600 transition-all">

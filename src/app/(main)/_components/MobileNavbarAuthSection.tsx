@@ -83,7 +83,7 @@ export function MobileNavbarAuthSection(): React.ReactElement {
           className="w-full h-14 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-2xl text-base shadow-xl shadow-emerald-500/10"
           asChild
         >
-          <Link href="#">Order Now</Link>
+          <Link href={"/order" as never}>Order Now</Link>
         </Button>
 
         <button
@@ -120,7 +120,7 @@ export function MobileNavbarAuthSection(): React.ReactElement {
         className="w-full h-14 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-2xl text-base shadow-xl shadow-emerald-500/10"
         asChild
       >
-        <Link href="#">Order Now</Link>
+        <Link href={"/order" as never}>Order Now</Link>
       </Button>
     </div>
   );

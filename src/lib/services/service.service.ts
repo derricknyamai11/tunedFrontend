@@ -94,7 +94,7 @@ export async function fetchServiceBySlug(slug: string): Promise<ApiResult<Servic
 
   return {
     ok: true,
-    data: parsed.data,
+    data: parsed.data as unknown as ServiceDetails,
     message: "Service details fetched successfully",
     status: 200,
   };

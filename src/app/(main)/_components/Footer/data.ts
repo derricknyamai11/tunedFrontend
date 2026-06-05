@@ -38,9 +38,9 @@ export const FOOTER_DATA: FooterData = {
   ] satisfies readonly SocialLink[],
 
   legalLinks: [
-    { label: "Terms of Service", href: "#" },
-    { label: "Privacy Policy",   href: "#" },
-    { label: "Refund Policy",    href: "#" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Privacy Policy",   href: "/privacy" },
+    { label: "Refund Policy",    href: "/refund-policy" },
   ] satisfies readonly FooterLink[],
 };
 

@@ -19,14 +19,34 @@ const NON_ALNUM_RE = /[^a-z0-9]+/g;
 const TRIM_HYPHENS_RE = /^-+|-+$/g;
 
 const SANITISE_PATTERNS: ReadonlyArray<readonly [RegExp, string]> = [
+  // Remove <script> blocks entirely
   [/<script\b[\s\S]*?<\/script\s*>/gi, ""],
+  // Remove inline event handlers (onclick, onerror, onload, etc.)
   [/\s+on[a-z]{1,30}\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, ""],
-  [/(?:href|src|action|data)\s*=\s*["']?\s*javascript\s*:/gi, 'href="#"'],
-  [/data\s*:\s*text\/html/gi, "data:blocked"],
-  [/vbscript\s*:/gi, "blocked:"],
+  // Block javascript: and vbscript: URI schemes in any attribute
+  [/(?:href|src|action|data|xlink:href)\s*=\s*["']?\s*(?:javascript|vbscript|livescript|data)\s*:/gi, 'href="#"'],
+  // Block data:text/html URIs
+  [/data\s*:\s*(?:text\/html|application\/javascript|text\/javascript)/gi, "data:blocked"],
+  // Remove dangerous elements
+  [/<\/?(?:iframe|object|embed|applet|link|import|template)\b[^>]*>/gi, ""],
+  // Remove <base> tags (can redirect all relative URLs)
   [/<base\s[^>]*>/gi, ""],
+  // Remove meta refresh tags
   [/<meta[^>]+http-equiv\s*=\s*["']?refresh["']?[^>]*>/gi, ""],
+  // Remove form elements
   [/<\/?\s*form\s*[^>]*>/gi, ""],
+  // Remove SVG event attributes (SVG XSS vector)
+  [/<svg\b[^>]*>/gi, "<svg>"],
+  [/<animate\b[^>]*>/gi, ""],
+  [/<set\b[^>]*>/gi, ""],
+  // Block CSS expression() attacks
+  [/expression\s*\(/gi, "blocked("],
+  // Block srcdoc attribute (iframe variant)
+  [/\bsrcdoc\s*=/gi, "data-blocked="],
+  // Neutralise HTML entities that encode 'javascript'
+  [/&#(?:0*106|x0*6[aA]);?(?:&#(?:0*97|x0*61);?){0,1}/gi, "blocked"],
+  // Remove XML processing instructions
+  [/<\?[\s\S]*?\?>/g, ""],
 ];
 
 export function calculateReadTime(htmlContent: string): number {

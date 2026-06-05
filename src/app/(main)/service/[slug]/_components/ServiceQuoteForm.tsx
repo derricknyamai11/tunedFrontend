@@ -31,7 +31,8 @@ export function ServiceQuoteForm({ service, levels }: ServiceQuoteFormProps) {
     }
   }, [service.id, levels, setServiceId, setLevelId, formState.levelId]);
 
-  const continueHref = "#";
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const continueHref = `/order?service=${service.slug}` as any;
 
   return (
     <div className="flex flex-col gap-4 w-full">

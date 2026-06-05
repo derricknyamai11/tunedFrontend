@@ -73,7 +73,7 @@ export function FeaturedSamples({
 
         <div className="mt-10 flex justify-center">
           <Link
-            href="#"
+            href="/samples"
             className={cn(
               "inline-flex items-center gap-2 rounded-full",
               "bg-emerald-500 px-6 py-3 text-sm font-semibold text-white",

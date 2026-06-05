@@ -149,3 +149,16 @@ export const apiPost = <T>(
   opts?: Omit<RequestOptions, "method" | "body">
 ): Promise<ApiResult<T>> =>
   apiRequest<T>(path, { ...opts, method: "POST", body });
+
+export const apiPatch = <T>(
+  path: string,
+  body: unknown,
+  opts?: Omit<RequestOptions, "method" | "body">
+): Promise<ApiResult<T>> =>
+  apiRequest<T>(path, { ...opts, method: "PATCH", body });
+
+export const apiDelete = <T>(
+  path: string,
+  opts?: Omit<RequestOptions, "method" | "body">
+): Promise<ApiResult<T>> =>
+  apiRequest<T>(path, { ...opts, method: "DELETE" });

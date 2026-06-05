@@ -13,7 +13,7 @@ import { placeholderImage } from "@/lib/utils";
 export function BlogCard({ post, isPrimary }: BlogCardProps) {
   const [imgError, setImgError] = useState(false);
 
-  const backgroundImage = imgError
+  const backgroundImage = imgError || !post.featuredImage
     ? placeholderImage(post.title.slice(0, 20))
     : post.featuredImage;
 
@@ -88,7 +88,7 @@ export function BlogCard({ post, isPrimary }: BlogCardProps) {
               {post.readTimeMinutes} min read
             </span>
             <span className="text-xs text-white opacity-50">
-              {formatPublishedDate(post.publishedAt)}
+              {post.publishedAt ? formatPublishedDate(post.publishedAt) : ""}
             </span>
           </div>
         </div>

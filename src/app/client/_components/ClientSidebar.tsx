@@ -29,9 +29,11 @@ export function ClientSidebar({ user, ...props }: ClientSidebarProps) {
     { title: "Dashboard", url: "/client/dashboard", icon: DashboardSquare01Icon, badge: undefined, label: undefined },
     { title: "My Orders", url: "/client/orders", icon: Folder01Icon, badge: activeOrdersCount > 0 ? activeOrdersCount : undefined, label: undefined },
     { title: "My Balance", url: "/client/balance", icon: Wallet01Icon, badge: undefined, label: `$${balance.toFixed(2)}` },
+    { title: "Messages", url: "/client/messages", icon: UserIcon, badge: undefined, label: undefined },
     { title: "Planner", url: "/client/planner", icon: Calendar01Icon, badge: undefined, label: undefined },
     { title: "Profile", url: "/client/profile", icon: UserIcon, badge: undefined, label: undefined },
     { title: "Referrals", url: "/client/referrals", icon: GiftIcon, badge: undefined, label: undefined },
+    { title: "Help Center", url: "/client/help", icon: Settings05Icon, badge: undefined, label: undefined },
     { title: "Settings", url: "/client/settings", icon: Settings05Icon, badge: undefined, label: undefined },
   ];
 

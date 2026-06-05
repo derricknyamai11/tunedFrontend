@@ -109,6 +109,12 @@ export function useRegisterForm(callbackUrl: string) {
       setFormStatus('success');
       setIsSubmitting(false);
 
+      // If backend auto-verified (dev mode), go directly to login
+      if ((result as { auto_verified?: boolean }).auto_verified) {
+        router.push(`/auth/login?registered=1` as never);
+        return;
+      }
+
       const verifyParams = new URLSearchParams({
         email: result.email,
         ...(sanitizeCallbackUrl(callbackUrl) ? { callbackUrl: sanitizeCallbackUrl(callbackUrl) } : {}),

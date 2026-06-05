@@ -13,7 +13,7 @@ import type {
 export function SampleCard({ sample }: SampleCardProps) {
   const [imgError, setImgError] = useState(false);
 
-  const imgSrc = imgError
+  const imgSrc = imgError || !sample.image
     ? placeholderImage(sample.title.slice(0, 20))
     : sample.image;
 

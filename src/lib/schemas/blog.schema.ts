@@ -4,18 +4,18 @@ import { TagSchema } from "./tag.schema";
 export const BlogPostSchema = z.object({
   id:               z.string().min(1, "Blog id is required"),
   title:            z.string().min(1, "Blog title is required"),
-  content:          z.string().min(1, "Blog content is required"),
-  author:           z.string().min(1, "Blog author is required"),
-  category_id:      z.string().min(1, "category_id is required"),
+  content:          z.string().default(""),
+  author:           z.string().default(""),
+  category_id:      z.string().default(""),
   slug:             z.string().min(1, "Blog slug is required"),
-  excerpt:          z.string().min(1, "Blog excerpt is required"),
-  featured_image:   z.string().min(1, "featured_image is required"),
-  meta_description: z.string().min(1, "meta_description is required"),
-  is_published:     z.boolean(),
-  is_featured:      z.boolean(),
-  published_at:     z.string().min(1, "published_at is required"),
-  tags:             z.array(TagSchema),
-});
+  excerpt:          z.string().default(""),
+  featured_image:   z.string().nullable().default(""),
+  meta_description: z.string().nullable().default(""),
+  is_published:     z.boolean().default(false),
+  is_featured:      z.boolean().default(false),
+  published_at:     z.string().nullable().optional().default(""),
+  tags:             z.array(TagSchema).optional().default([]),
+}).passthrough();
 
 export const BlogCategorySchema = z.object({
   id: z.string().or(z.number()).transform(v => String(v)),

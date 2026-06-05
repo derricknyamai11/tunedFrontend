@@ -24,16 +24,16 @@ export const SampleSchema = z.object({
     .transform((v) => String(v)),
   title: z.string().min(1),
   slug: z.string().min(1),
-  excerpt: z.string().default(""),
+  excerpt: z.string().nullable().default(""),
   service_id: z
-    .union([z.string(), z.number()])
-    .transform((v) => String(v)),
+    .union([z.string(), z.number(), z.null()])
+    .transform((v) => v ? String(v) : ""),
   word_count: z.number().min(0).default(0),
   featured: z.boolean().default(false),
-  image: z.string().default(""),
+  image: z.string().nullable().default(""),
   tags: z.array(SampleTagSchema).default([]),
-  service: SampleServiceSchema,
-});
+  service: SampleServiceSchema.nullable().optional(),
+}).passthrough();
 
 export const RelatedSamplesResponseSchema = z.object({
   data: z.array(

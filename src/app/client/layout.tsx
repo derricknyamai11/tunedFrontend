@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { DM_Sans } from "next/font/google";
 import "@/app/globals.css";
 import { AuthProvider } from "@/lib/auth/Context";
@@ -35,12 +36,17 @@ export default async function ClientRootLayout({
   children: React.ReactNode;
 }>) {
   const authResult = await getServerAuthUser();
-  const initialUser: AuthUser | null = authResult.ok ? authResult.user : null;
+
+  if (!authResult.ok || !authResult.user) {
+    redirect("/auth/login");
+  }
+
+  const initialUser: AuthUser = authResult.user;
 
   return (
     <html lang="en" className={dmSans.variable} data-scroll-behavior="smooth">
       <body className={`${dmSans.className} antialiased bg-[#e8e6e1]`}>
-         <AuthProvider initialUser={initialUser} skipInitialFetch={initialUser !== null}>
+         <AuthProvider initialUser={initialUser} skipInitialFetch={true}>
           <QueryProvider>
           <NotificationProvider>
             <TooltipProvider delayDuration={300}>

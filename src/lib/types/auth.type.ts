@@ -4,6 +4,8 @@ export interface AuthUser {
   readonly email: string;
   readonly avatar_url: string | null;
   readonly session_created_at: string | null;
+  readonly is_admin: boolean;
+  readonly is_writer?: boolean;
 }
 
 export type AuthStatus =

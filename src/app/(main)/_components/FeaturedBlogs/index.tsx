@@ -114,7 +114,7 @@ export function FeaturedBlogs({
 
         <div className="mt-10 flex justify-center">
           <Link
-            href="#"
+            href="/blogs"
             className={cn(
               "inline-flex items-center gap-2 rounded-full",
               "bg-slate-800 px-6 py-3 text-sm font-semibold text-white",

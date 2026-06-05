@@ -16,7 +16,8 @@ export const AuthUserSchema = z.object({
     .optional()
     .default(null),
   session_created_at: z
-    .string()
+    .string(),
+  is_admin: z.boolean().default(false),
 });
 
 export const AuthMeResponseSchema = AuthUserSchema.passthrough();

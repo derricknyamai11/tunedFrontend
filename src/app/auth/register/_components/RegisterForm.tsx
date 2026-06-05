@@ -217,8 +217,15 @@ export function RegisterForm({ callbackUrl }: RegisterFormProps) {
         />
       </RegisterField>
 
+      {/* Account type note */}
+      <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-[12px] text-slate-600 leading-relaxed">
+        <p className="font-semibold text-slate-800 mb-1">📌 Account Types</p>
+        <p><span className="font-semibold text-emerald-700">Client:</span> Registering here creates a client account — you can place orders, track progress, and message writers.</p>
+        <p className="mt-1"><span className="font-semibold text-slate-700">Writer?</span> Register as a client first, then <a href="/contact" className="text-emerald-700 underline font-semibold">apply to join as a writer</a> via our contact page. Our team reviews applications and grants writer access.</p>
+      </div>
+
       <RegisterSubmitButton isSubmitting={isSubmitting} isSuccess={isSuccess} />
-      
+
       <p className="text-center text-[15px] text-slate-700 mt-2 font-medium">
         Already have an account? <Link href={{pathname:"/auth/login"}} className="font-semibold text-emerald-700 hover:text-emerald-800 hover:underline transition-colors">Sign in</Link>
       </p>

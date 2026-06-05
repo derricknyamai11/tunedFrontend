@@ -5,9 +5,9 @@ import { DeadlineSchema } from "./common.schema";
 export const PricingCategorySchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),
-  description: z.string().min(1),
-  display_order: z.number().int().positive(),
-});
+  description: z.string().nullable().optional().default(""),
+  display_order: z.number().int().nonnegative().default(0),
+}).passthrough();
 
 export const CalculatePriceResponseSchema = z.object({
   price_per_page: z.number().nonnegative(),

@@ -1,0 +1,42 @@
+{
+  // ── TypeScript: stop re-validating every file on every keystroke ──
+  "typescript.validate.enable": false,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "typescript.tsserver.maxTsServerMemory": 1024,
+  "typescript.tsserver.watchOptions": {
+    "watchFile": "useFsEventsOnParentDirectory",
+    "watchDirectory": "useFsEvents",
+    "fallbackPolling": "dynamicPriorityPolling"
+  },
+
+  // ── File watcher: exclude heavy directories from VS Code watching ──
+  "files.watcherExclude": {
+    "**/.next/**": true,
+    "**/node_modules/**": true,
+    "**/.git/**": true,
+    "**/dist/**": true,
+    "**/.turbo/**": true
+  },
+
+  // ── Search: exclude these from workspace search ──
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "**/dist": true
+  },
+
+  // ── Editor: reduce background work ──
+  "editor.codeLens": false,
+  "editor.semanticHighlighting.enabled": false,
+
+  // ── ESLint: only lint open files, not the whole project ──
+  "eslint.lintTask.enable": false,
+  "eslint.run": "onSave",
+
+  // ── Tailwind: only validate CSS files ──
+  "tailwindCSS.validate": true,
+  "tailwindCSS.experimental.classRegex": [],
+
+  // ── Use the project's own TS version (not VS Code's bundled one) ──
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

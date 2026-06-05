@@ -29,10 +29,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const service = result.data;
   return {
     title: `${service.name} Services | TunedEssays`,
-    description: service.description,
+    description: service.description ?? undefined,
     openGraph: {
       title: `${service.name} Specialist Services`,
-      description: service.description,
+      description: service.description ?? undefined,
     },
   };
 }

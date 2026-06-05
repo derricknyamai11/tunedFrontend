@@ -7,6 +7,7 @@ import { getServerAuthUser } from "@/lib/services/auth.server.service";
 import { NotificationProvider } from "@/lib/contexts/NotificationContext";
 import { QueryProvider } from "@/lib/providers/QueryProvider";
 import { Toaster } from "sonner";
+import { AIChatWidget } from "@/components/AIChatWidget";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -52,6 +53,7 @@ export default async function RootLayout({
             <NotificationProvider>
               {children}
               <Toaster position="top-center" richColors theme="light" />
+              <AIChatWidget />
             </NotificationProvider>
           </QueryProvider>
          </AuthProvider>
